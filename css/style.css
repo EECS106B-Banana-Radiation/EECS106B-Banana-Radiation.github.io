@@ -180,10 +180,30 @@ h2.heading-title{
   Banner styles
 ================================================*/
 
-#section-banner{
-	background: url("../images/figs/race_arch.png") ;
-	background-size: cover;
+#section-banner {
+    position: relative;
 }
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.video-foreground {
+    width: 100%;
+    height: 100%;
+}
+
+.video-foreground video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
 .banner-content{
 	padding: 250px 0px 300px 0px;
 	position: relative;
@@ -327,7 +347,7 @@ h2.title span{
 
 .profile-bg {
     background-color: transparent;
-    background: url("../images/figs/curvilinear.png");
+    background: url("../images/figs/race_arch.png");
     position: absolute;
     background-clip: border-box;
     background-attachment: scroll;
