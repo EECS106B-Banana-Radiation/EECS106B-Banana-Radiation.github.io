@@ -155,41 +155,19 @@
 				<div class="col-md-6 col-sm-6 wow fadeInLeft">
 					<div class="skill-desc">
 						<p>Our team consists of Yunhao Liu, Chenyan Zhang, and Ray Xi. We are a group of committed individuals from the EECS department at Berkeley, with expertise ranging from MEng to BS level.</p>
-
-						 
 					</div>
 				</div>
-
+	
 				<div class="col-md-6 col-sm-6 wow fadeInRight" >
-					<div class="skill-box wow fadeInDown" data-wow-delay=".2s">
-						<label> Yunhao Liu</label>
-						<div class="progress">
-							<div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuenow="70" aria-valuemax="100" style="width: 70%;" >
-								70%
-							</div>
-						</div>
+					<div style="height: 400px;">
+						<canvas id="skillChart"></canvas>
 					</div>
-					<div class="skill-box wow fadeInDown" data-wow-delay=".4s">
-						<label> Chenyan Zhang</label>
-						<div class="progress">
-							<div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuenow="85" aria-valuemax="100" style="width: 55%;" >
-								55%
-							</div>
-						</div>
-					</div>
-					<div class="skill-box wow fadeInDown" data-wow-delay=".6s">
-						<label> Ray Xi</label>
-						<div class="progress">
-							<div class="progress-bar" role="progress-bar" aria-valuemin="0" aria-valuenow="90" aria-valuemax="100" style="width: 30%;" >
-								30%
-							</div>
-						</div>
-					</div>
-					
 				</div>
 			</div>
 		</div>
 	</section>
+	
+	
 	<!-- section skill End -->
 
 	<!-- Resume start -->
@@ -617,5 +595,58 @@
         new WOW().init();
     
     </script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script>
+		var ctx = document.getElementById('skillChart').getContext('2d');
+		var myRadarChart = new Chart(ctx, {
+			type: 'radar',
+			data: {
+				labels: ['Implementation', 'Research', 'Testing', 'Website Building', 'ROS'],
+				datasets: [
+					{
+						label: 'Yunhao Liu',
+						data: [90, 70, 90, 70, 90],
+						fill: false
+					},
+					{
+						label: 'Chenyan Zhang',
+						data: [85, 90, 80, 80, 80],
+						fill: false
+					},
+					{
+						label: 'Ray Xi',
+						data: [70, 75, 50, 95, 85],
+						fill: false
+					}
+				]
+			},
+			options: {
+    scales: {
+        r: {
+            beginAtZero: true,
+            suggestedMax: 100,  // Assuming that the max skill value is 100
+			ticks: {
+                display: false // This will hide the scale labels
+            },
+            grid: {
+                display: false // This will hide the grid lines
+            }
+		}
+		
+    },
+    elements: {
+        line: {
+            tension: 0, // disables bezier curves
+        }
+    },
+				animation: {
+					onProgress: function(animation) {
+						animation.chart.ctx.area = animation.currentStep / animation.numSteps;
+					}
+				}
+			}
+		});
+	</script>
   </body>
 </html>
